@@ -6,7 +6,8 @@ import { Container, Card, Button } from 'react-bootstrap';
 
 import { getPosts } from '../../store/actions';
 import Masonry from 'react-masonry-css';
-import { scryRenderedDOMComponentsWithClass } from 'react-dom/test-utils';
+
+import Carrousel from '../utils/carrousel';
 
 const Home = () => {
     const posts = useSelector(state => state.posts);
@@ -38,6 +39,10 @@ const Home = () => {
 
     return(
         <Container>
+            <div className="mt-3">
+                <Carrousel posts={posts} limit={2}/>
+            </div>
+            
 
             <div className="mt-3">
                 <Masonry
