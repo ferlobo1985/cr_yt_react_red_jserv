@@ -21,3 +21,13 @@ export const getPostById = async(id) => {
         throw error;
     }
 }
+
+export const getRelatedPosts = async(data) => {
+    try {
+        console.log(data)
+        const response = await axios.get(`${URL_SERV}/posts?category_like=${data.category}`);
+        return response.data;
+    } catch(error){
+        throw error;
+    }
+}

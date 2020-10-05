@@ -1,8 +1,9 @@
 import React,{ useEffect } from 'react';
 import { useDispatch,  useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import { Container, Row, Col } from 'react-bootstrap';
-import { getPostById } from '../../store/actions';
+import { getPostById , getRelatedPosts, clearPost } from '../../store/actions';
 
 const Post = (props) => {
     const postId = props.match.params.id;
@@ -11,10 +12,18 @@ const Post = (props) => {
 
 
     const getPostData = () => {
-        dispatch(getPostById(postId))
+        dispatch(getPostById(postId)).then((data)=>{
+            dispatch(getRelatedPosts(data.payload))
+        })
     }
 
     useEffect( getPostData,[])
+
+    useEffect(()=>{
+        return() => {
+            dispatch(clearPost())
+        }
+    },[])
 
 
     return(
@@ -48,7 +57,20 @@ const Post = (props) => {
                     }
                 </Col>
                 <Col sm={3}>
-                    ss
+                   <div className="mt-4">
+                        <h3>Related posts</h3>
+                        { 
+                        posts.relatedPosts ? 
+                            posts.relatedPosts.map((item,i)=>(
+                                <Link key={i} to={`/post/${item.id}`}>
+                                    <h5>{item.title}</h5>
+                                    <div>{item.excerpt}</div>
+                                    <hr/>
+                                </Link>
+                            ))
+                            :null
+                        }
+                   </div>
                 </Col>
             </Row>
         </Container>
