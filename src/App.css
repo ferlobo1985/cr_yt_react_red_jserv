@@ -1,3 +1,13 @@
+
+h1 {
+  color: #424242;
+}
+
+a,a:hover  { 
+  text-decoration: none;
+  color: inherit;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +45,35 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+ 
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  margin-bottom: 30px;
+}
+
+.poll_container {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.poll_container .col{
+  font-size: 40px;
+  font-weight: 200;
+}
+.poll_container .col div {
+  font-size: 20px;
 }
