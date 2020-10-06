@@ -8,6 +8,7 @@ import { getPosts } from '../../store/actions';
 import Masonry from 'react-masonry-css';
 
 import Carrousel from '../utils/carrousel';
+import Poll from '../utils/poll';
 
 const Home = () => {
     const posts = useSelector(state => state.posts);
@@ -53,6 +54,8 @@ const Home = () => {
                     { renderPosts() }
                 </Masonry>
             </div>
+            <hr/>
+            <Poll/>
 
         </Container>
     )

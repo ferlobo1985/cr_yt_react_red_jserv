@@ -19,3 +19,14 @@ export const clearPost = () =>  ({
     type: 'CLEAR_POST',
     payload: null
 })
+
+
+export const getPoll = () =>  ({
+    type: 'GET_POLL',
+    payload: api.getPoll()
+})
+
+export const addVote = (id,value) =>  ({
+    type: 'ADD_VOTE',
+    payload: api.addVote(id,value)
+})

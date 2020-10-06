@@ -31,3 +31,29 @@ export const getRelatedPosts = async(data) => {
         throw error;
     }
 }
+
+
+export const getPoll = async(id) => {
+    try {
+        const response = await axios.get(`${URL_SERV}/poll`);
+        return response.data;
+    } catch(error){
+        throw error;
+    }
+}
+
+
+
+export const addVote = async(id,value) => {
+    try {
+        const addvote = await axios({
+            url:`${URL_SERV}/poll/${id}`,
+            method:'PATCH',
+            data: { votes:value }
+        });
+        const response = await axios.get(`${URL_SERV}/poll`);
+        return response.data;
+    } catch(error){
+        throw error;
+    }
+}
