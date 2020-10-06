@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 
 import { Form, Button, Alert, Container } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
+import { contactUs } from '../../store/actions';
 
 const Contact = () => {
     const dispatch = useDispatch();
@@ -22,8 +23,19 @@ const Contact = () => {
             message: Yup.string()
             .required('Sorry the message is required')
         }),
-        onSubmit: ( values )=>{
-            console.log(values)
+        onSubmit: ( values, { resetForm } )=>{
+            dispatch(contactUs(values)).then((payload)=>{
+                resetForm();
+                toast('Congrats, we will contact you shortly, not.',{
+                    type:toast.TYPE.SUCCESS,
+                    position:toast.POSITION.BOTTOM_LEFT
+                })
+            }).catch((err)=>{
+                toast('Sorry, TRY AGAIN LATER',{
+                    type:toast.TYPE.ERROR,
+                    position:toast.POSITION.TOP_LEFT
+                })
+            })
         }
     })
 
@@ -83,7 +95,7 @@ const Contact = () => {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
-
+                <ToastContainer/>
 
             </Form>
         </Container>

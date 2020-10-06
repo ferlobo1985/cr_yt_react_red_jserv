@@ -49,7 +49,20 @@
       "category": "JS"
     }
   ],
-  "contact": [],
+  "contact": [
+    {
+      "name": "steve",
+      "email": "steve@gmail.com",
+      "message": "give me work !!!!!! :)",
+      "id": 1
+    },
+    {
+      "name": "RON",
+      "email": "ron@gmal.com",
+      "message": "everything need to be private.",
+      "id": 2
+    }
+  ],
   "poll": [
     {
       "id": 1,

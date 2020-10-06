@@ -60,3 +60,19 @@ export const addVote = async(id,value) => {
         throw error;
     }
 }
+
+
+export const contactUs = async(values) => {
+    try {
+        const response = await axios({
+            url:`${URL_SERV}/contact`,
+            method:'POST',
+            data: values
+        });
+
+        console.log(response.data)
+        return response.data;
+    } catch(error){
+        throw error;
+    }
+}

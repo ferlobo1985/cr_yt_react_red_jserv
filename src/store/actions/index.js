@@ -30,3 +30,9 @@ export const addVote = (id,value) =>  ({
     type: 'ADD_VOTE',
     payload: api.addVote(id,value)
 })
+
+
+export const contactUs = (values) =>  ({
+    type: 'CONTACT_US',
+    payload: api.contactUs(values)
+})
