@@ -1,5 +1,7 @@
 import React,{ useEffect } from 'react';
 import { useDispatch,  useSelector } from 'react-redux';
+import cookie from 'react-cookies';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { getPoll, addVote } from '../../store/actions';
@@ -26,8 +28,17 @@ const Poll = () => {
     )
 
     const voteHandler = (id,votes) => {
-        const value = votes + 1;
-        dispatch(addVote(id,value))
+        const getVoteCookie = cookie.load('voted');
+        if(getVoteCookie){
+            toast('Sorry, you did this already, remember ?',{
+                type: toast.TYPE.ERROR,
+                position: toast.POSITION.TOP_RIGHT
+            })
+
+        } else {
+            const value = votes + 1;
+            dispatch(addVote(id,value))
+        }
     }
 
 
@@ -37,6 +48,7 @@ const Poll = () => {
             <Row className="justify-content-md-center">
                 {renderPoll()}
             </Row>
+            <ToastContainer/>
         </div>
     )
 }

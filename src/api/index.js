@@ -1,4 +1,5 @@
 import axios from 'axios';
+import cookie from 'react-cookies';
 
 const URL_SERV = "http://localhost:3004"
 
@@ -52,6 +53,8 @@ export const addVote = async(id,value) => {
             data: { votes:value }
         });
         const response = await axios.get(`${URL_SERV}/poll`);
+        cookie.save('voted','yes');
+
         return response.data;
     } catch(error){
         throw error;
